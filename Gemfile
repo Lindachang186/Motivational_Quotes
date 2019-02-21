@@ -1,23 +1,9 @@
 source "https://rubygems.org"
 
 gem 'sinatra'
-gem 'activerecord', '4.2.7.1'
-gem 'sinatra-activerecord'
+gem 'sqlite3'
+gem 'activerecord', :require=> "active_record"
 gem 'rake'
-gem 'thin'
+gem 'pry'
+gem 'sinatra-activerecord'
 gem 'require_all'
-
-group :development do
-	gem 'shotgun'
-	gem 'pry'
-	gem 'sqlite3'
-	gem 'tux'
-end
-
-group :test do
-  gem 'rspec'
-  gem 'capybara'
-  gem 'rack-test'
-
-
-end

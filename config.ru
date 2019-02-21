@@ -1,5 +1,1 @@
-require './config/environment'
-require 'sinatra/activerecord/rake'
-
-
-run App
+require_relative './config/environment'
