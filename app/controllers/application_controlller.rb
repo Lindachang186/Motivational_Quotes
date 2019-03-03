@@ -14,12 +14,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/users/login' do
-    erb :'users/login'
+    erb :"users/login"
   end
 
-  get '/users/signin' do
-    erb :'users/signin'
-
+  get '/users/signup' do
+    erb :"users/signup"
   end
 
 
