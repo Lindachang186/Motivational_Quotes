@@ -13,13 +13,15 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-  get '/signup' do
-    erb :new
+  get '/users/login' do
+    erb :'users/login'
   end
 
-  get '/login' do
-    erb :login
+  get '/users/signin' do
+    erb :'users/signin'
+
   end
+
 
 
 end
