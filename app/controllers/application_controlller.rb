@@ -30,8 +30,8 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/users/users/login' do
-    @user= User.find_by(username: params[:username], password: params[:password])
-    if @user
+    @user= User.find_by(username: params[:username])
+    if @user.username == params[:username]
       session[:user_id] = @user.id
       redirect "/users/show"
     else
@@ -48,7 +48,6 @@ class ApplicationController < Sinatra::Base
       @user= User.find(session[:user_id])
       erb :"/users/show"
   end
-
 
 
 end
