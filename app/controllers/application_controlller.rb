@@ -18,11 +18,19 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/users/signup' do
+    if !User.find_by(username: params[:username])
     @user = User.new(username: params["username"], password: params["password"])
     @user.save
     session[:user_id] = @user.id
 
     redirect "/users/show"
+      else
+    redirect "user/exists"
+    end
+  end
+
+  get  '/user/exists' do
+    erb :"users/exists"
   end
 
   get '/users/login' do
