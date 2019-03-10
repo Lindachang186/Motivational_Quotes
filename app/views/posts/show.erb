@@ -4,6 +4,10 @@
   <h1><%=@post.title%></h1>
   <h3><%=@post.content%></h3>
 
+  <a href="/posts/index">Back To All Posts</a><br>
+
+  <br>
+
   <form action="/post/<%= @post.id %>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="delete">
