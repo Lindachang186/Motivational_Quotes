@@ -1,8 +1,8 @@
 require './config/environment'
 
-class PostsController < Sinatra::Base
+class PostsController < ApplicationController
 
- get '/posts' do
+ get '/posts/index' do
    @post = Post.all
    erb :'posts/index'
  end
