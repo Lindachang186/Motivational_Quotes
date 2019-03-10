@@ -3,15 +3,18 @@ require './config/environment'
 class PostsController < ApplicationController
 
  get '/posts/index' do
+   redirect_if_not_logged_in
    @posts = Post.all
    erb :'posts/index'
  end
 
  get '/posts/new' do
+   redirect_if_not_logged_in
    erb :'posts/new'
  end
 
  post '/posts/index' do
+   redirect_if_not_logged_in
     @post=Post.create(:title => params[:title], :content => params[:content])
     erb :'posts/show'
 end
@@ -38,7 +41,6 @@ end
   end
 
   delete '/posts/:id/delete' do
-    binding.pry
     @id = params[:id][1..-1]
     Post.find_by_id(@id).delete
     redirect '/posts/index'
