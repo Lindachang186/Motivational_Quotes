@@ -1,6 +1,8 @@
+use Rack::MethodOverride
+
+
 require './config/environment'
 
-use Rack::MethodOverride
 
 run ApplicationController
 run PostsController

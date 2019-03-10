@@ -12,13 +12,28 @@ class PostsController < ApplicationController
  end
 
  post '/posts/index' do
-   @posts = Post.create(:title => params[:title], :content => params[:content])
-   redirect to "/posts/#{@posts.id}"
+   @post=Post.create(:title => params[:title], :content => params[:content])
+   redirect to "/posts/#{@post.id}"
 end
 
   get '/posts/:id' do
-    @posts = Post.find_by_id(params[:id])
+    @post = Post.find_by_id(params[:id])
     erb :'posts/show'
+  end
+
+  get '/posts/:id/edit' do
+    binding.pry
+    @post = Post.find_by_id(params[:id])
+    erb :'posts/edit'
+  end
+
+  patch '/posts/:id' do
+    binding.pry
+    @post = Post.find_by_id(params[:id])
+    @post.title = params[:title]
+    @post.content = params[:content]
+    @post.save
+    redirect to "/posts/#{@post.id}"
   end
 
 

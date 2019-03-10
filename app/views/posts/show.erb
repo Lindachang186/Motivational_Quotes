@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 
-  <h1><%@posts.title%></h1>
-  <br>
-  <h2><%@posts.content%></h2>
+  <h1><%=@post.title%></h1>
+  <h3><%=@post.content%></h3>
+
+  <p><a href="/posts/:id/edit">EDIT</a></p>
 
 </html>
