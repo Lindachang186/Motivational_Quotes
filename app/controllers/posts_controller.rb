@@ -29,7 +29,8 @@ end
   end
 
   patch '/posts/:id' do
-    @post = Post.find_by_id(params[:id][1])
+    @id = params[:id][1..-1]
+    @post = Post.find_by_id(@id)
     @post.title = params[:title]
     @post.content = params[:content]
     @post.save
@@ -37,7 +38,9 @@ end
   end
 
   delete '/posts/:id/delete' do
-    Post.find(params[:id]).delete
+    binding.pry
+    @id = params[:id][1..-1]
+    Post.find_by_id(@id).delete
     redirect '/posts/index'
   end
 
