@@ -3,11 +3,9 @@
 <head>
   <h1>Your Motivational Quotes and Stories!</h1>
 <body>
-  <ol>
   <%Post.all.each do |post|%>
-  <li><a href="/posts/:<%=post.id%>"><%=post.title%></a><li>
+  <li><a href="/posts/:<%=post.id%>"><%=post.title%></a></li>
   <%end%>
-</ol>
 
   <a href="/posts/new">Create A New Post!</a>
 

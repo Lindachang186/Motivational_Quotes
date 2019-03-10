@@ -4,8 +4,9 @@
   <h1><%=@post.title%></h1>
   <h3><%=@post.content%></h3>
 
-  <p><a href="/posts/:id/edit">EDIT</a></p>
-
-  <p><a href="/posts/<%= @post.id%>/edit">EDIT</a></p>
+  <form action="/post/<%= @post.id %>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="delete">
+</form>
 
 </html>
