@@ -4,7 +4,7 @@
   <h1>Your Motivational Quotes and Stories!</h1>
 <body>
   <ol>
-  <%@posts.each do |post|%>
+  <%Post.all.each do |post|%>
   <li><a href="/posts/:<%=post.id%>"><%=post.title%></a><li>
   <%end%>
 </ol>
