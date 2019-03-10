@@ -3,11 +3,14 @@
 <head>
   <h1>Your Motivational Quotes and Stories!</h1>
 <body>
-  <%@post.each do |post| %>
-  <ol><%post.title%></ol>
+  <ol>
+  <%@posts.each do |post|%>
+  <li><%=post.title%><li>
   <%end%>
+</ol>
 
-  
+  <a href="/posts/new">Create A New Post!</a>
+
 </body>
 
 </html>
