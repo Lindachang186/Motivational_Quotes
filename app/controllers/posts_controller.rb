@@ -22,13 +22,11 @@ end
   end
 
   get '/posts/:id/edit' do
-    binding.pry
     @post = Post.find_by_id(params[:id])
     erb :'posts/edit'
   end
 
   patch '/posts/:id' do
-    binding.pry
     @post = Post.find_by_id(params[:id])
     @post.title = params[:title]
     @post.content = params[:content]
