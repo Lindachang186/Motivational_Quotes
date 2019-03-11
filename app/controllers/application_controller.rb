@@ -43,6 +43,7 @@ class ApplicationController < Sinatra::Base
       session[:user_id] = @user.id
       redirect "/users/show"
     else
+      puts "That username does not exist"
       redirect "/"
     end
   end

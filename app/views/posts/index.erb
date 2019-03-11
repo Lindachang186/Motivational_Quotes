@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <h1>Your Motivational Quotes and Stories!</h1>
+  <h1>Check Out All Motivational Quotes and Stories!</h1>
 <body>
   <ol><%Post.all.each do |post|%>
   <li><a href="/posts/:<%=post.id%>"><%=post.title%></a></li>
   <%end%>
 
   <br>
-
-  <h3><a href="/posts/new">Create A New Post!</a></h3>
 
 </body>
 
