@@ -26,18 +26,18 @@ end
   end
 
   get '/posts/:id/edit' do
-    @id = params[:id][1..-1]
+    @id = params[:id]
     @post = Post.find_by_id(@id)
-    erb :'posts/edit'
+    erb :"posts/edit"
   end
 
-  patch '/posts/:id' do
-    @id = params[:id][1..-1]
+  patch '/posts/:id/edit' do
+    @id = params[:id]
     @post = Post.find_by_id(@id)
     @post.title = params[:title]
     @post.content = params[:content]
     @post.save
-    redirect to "/posts/#{@post.id}"
+    redirect to "/posts/index"
   end
 
   delete '/posts/:id/delete' do
