@@ -54,6 +54,7 @@ class ApplicationController < Sinatra::Base
 
   get '/users/show' do
       @user= User.find(session[:user_id])
+      @posts = Post.all
       erb :"/users/show"
   end
 
