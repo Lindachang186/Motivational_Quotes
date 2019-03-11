@@ -40,8 +40,8 @@ end
     redirect to "/posts/index"
   end
 
-  delete '/posts/:id/delete' do
-    @id = params[:id][1..-1]
+  delete '/post/:id/delete' do
+    @id = params[:id]
     Post.find_by_id(@id).delete
     redirect '/posts/index'
   end
