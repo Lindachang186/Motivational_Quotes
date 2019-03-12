@@ -22,7 +22,6 @@ class ApplicationController < Sinatra::Base
     @user = User.new(username: params["username"], password: params["password"])
     @user.save
     session[:user_id] = @user.id
-
     redirect "/users/show"
       else
     redirect "user/exists"
@@ -55,7 +54,12 @@ class ApplicationController < Sinatra::Base
 
   get '/users/show' do
       @user= User.find(session[:user_id])
-      @posts = Post.all
+      @posts = []
+      Post.all.each do |post|
+        if post.user_id == @user.id
+          @posts << post
+        end
+      end
       erb :"/users/show"
   end
 

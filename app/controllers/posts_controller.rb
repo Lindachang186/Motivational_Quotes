@@ -15,7 +15,7 @@ class PostsController < ApplicationController
 
  post '/posts/index' do
    redirect_if_not_logged_in
-    @post=Post.create(:title => params[:title], :content => params[:content])
+    @post= Post.create(:title => params[:title], :content => params[:content], :user_id => current_user.id)
     erb :'posts/show'
 end
 
@@ -27,28 +27,40 @@ end
   end
 
   get '/posts/:id/edit' do
-    @id = params[:id]
-    @post = Post.find_by_id(@id)
-    erb :"posts/edit"
+      @id = params[:id]
+      @post = Post.find_by_id(@id)
+      if @post.user_id == current_user.id
+        erb :"posts/edit"
+      else
+        redirect '/error'
+      end
   end
 
   patch '/posts/:id/edit' do
+    if current_user.id == session[:user_id]
     @id = params[:id]
     @post = Post.find_by_id(@id)
     @post.title = params[:title]
     @post.content = params[:content]
     @post.save
     redirect to "/posts/index"
+    else
+      redirect '/error'
+    end
   end
 
   delete '/post/:id/delete' do
-    @id = params[:id]
-    Post.find_by_id(@id).delete
-    redirect '/posts/index'
+    if current_user.id == session[:user_id]
+      @id = params[:id]
+      Post.find_by_id(@id).delete
+      redirect '/posts/index'
+    else
+      redirect '/error'
+    end
   end
 
   get '/error' do
-    "Error"
+    "Error! You are not allowed this function as this is not your post or story to change!"
   end
 
 end
