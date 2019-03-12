@@ -37,22 +37,23 @@ end
   end
 
   patch '/posts/:id/edit' do
-    if current_user.id == session[:user_id]
     @id = params[:id]
     @post = Post.find_by_id(@id)
-    @post.title = params[:title]
-    @post.content = params[:content]
-    @post.save
-    redirect to "/posts/index"
+    if @post.user_id == current_user.id
+      @post.title = params[:title]
+      @post.content = params[:content]
+      @post.save
+      redirect to "/posts/index"
     else
       redirect '/error'
     end
   end
 
   delete '/post/:id/delete' do
-    if current_user.id == session[:user_id]
-      @id = params[:id]
-      Post.find_by_id(@id).delete
+    @id = params[:id]
+    @post = Post.find_by_id(@id)
+    if @post.user_id == current_user.id
+      @post.delete
       redirect '/posts/index'
     else
       redirect '/error'
