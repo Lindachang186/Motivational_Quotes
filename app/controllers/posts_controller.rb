@@ -44,10 +44,14 @@ end
     @id = params[:id]
     @post = Post.find_by_id(@id)
     if @post.user_id == current_user.id
+      if params[:title].size > 0 && params[:content] > 0
       @post.title = params[:title]
       @post.content = params[:content]
       @post.save
       redirect to "/posts/index"
+      else
+        redirect '/error/input'
+      end 
     else
       redirect '/error'
     end
