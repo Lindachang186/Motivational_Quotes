@@ -44,7 +44,7 @@ end
     @id = params[:id]
     @post = Post.find_by_id(@id)
     if @post.user_id == current_user.id
-      if params[:title].size > 0 && params[:content] > 0
+      if params[:title].size > 0 && params[:content].size > 0
       @post.title = params[:title]
       @post.content = params[:content]
       @post.save
