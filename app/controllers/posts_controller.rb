@@ -15,8 +15,12 @@ class PostsController < ApplicationController
 
  post '/posts/index' do
    redirect_if_not_logged_in
+    if params[:title].size > 0 && params[:content] > 0
     @post= Post.create(:title => params[:title], :content => params[:content], :user_id => current_user.id)
     erb :'posts/show'
+  else
+    redirect '/error/input'
+  end
 end
 
   get '/posts/:id' do
@@ -61,7 +65,13 @@ end
   end
 
   get '/error' do
-    "Error! You are not allowed this function as this is not your post or story to change!"
+    erb :usererror
   end
+
+  get '/error/input' do
+    erb :inputerror
+  end
+
+
 
 end
