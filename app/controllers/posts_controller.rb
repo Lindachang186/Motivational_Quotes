@@ -15,7 +15,7 @@ class PostsController < ApplicationController
 
  post '/posts/index' do
    redirect_if_not_logged_in
-    if params[:title].size > 0 && params[:content] > 0
+    if params[:title].size > 0 && params[:content].size > 0
     @post= Post.create(:title => params[:title], :content => params[:content], :user_id => current_user.id)
     erb :'posts/show'
   else
@@ -51,7 +51,7 @@ end
       redirect to "/posts/index"
       else
         redirect '/error/input'
-      end 
+      end
     else
       redirect '/error'
     end
