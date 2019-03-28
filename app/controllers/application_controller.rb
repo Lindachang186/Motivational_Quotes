@@ -38,7 +38,7 @@ class ApplicationController < Sinatra::Base
 
   post '/users/users/login' do
     @user= User.find_by(username: params[:username])
-    if @user.username == params[:username]
+    if @user.username == params[:username] && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect "/users/show"
     else
@@ -54,12 +54,7 @@ class ApplicationController < Sinatra::Base
 
   get '/users/show' do
       @user= User.find(session[:user_id])
-      @posts = []
-      Post.all.each do |post|
-        if post.user_id == @user.id
-          @posts << post
-        end
-      end
+      @posts = @user.posts
       erb :"/users/show"
   end
 
