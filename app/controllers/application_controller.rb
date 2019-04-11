@@ -38,12 +38,12 @@ class ApplicationController < Sinatra::Base
 
   post '/users/users/login' do
     @user= User.find_by(username: params[:username])
-    if @user.username == params[:username] && @user.authenticate(params[:password])
+    if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect "/users/show"
     else
-      puts "That username does not exist"
-      redirect "/"
+      @error = "That username or password does not exist"
+      erb :"/users/login"
     end
   end
 
